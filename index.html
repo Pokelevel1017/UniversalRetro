@@ -56,6 +56,21 @@ main{padding-top:60px}
 .upi{width:44px;height:44px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);display:grid;place-items:center;font-size:24px;color:var(--accent);margin-bottom:12px}
 .upc:hover .upi{background:var(--accent);color:var(--bg);border-color:var(--accent)}
 .upl{font-size:13px;font-weight:600;margin-bottom:4px}.ups{font-size:11px;color:var(--text3)}
+
+/* ── Pagination ── */
+.pager{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:32px;flex-wrap:wrap}
+.pager-info{font-size:12px;color:var(--text3);margin-right:8px;font-family:'Outfit',sans-serif}
+.pager-btn{padding:8px 16px;border-radius:var(--radsm);background:var(--surface);border:1px solid var(--border);color:var(--text2);font-size:12px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s;display:flex;align-items:center;gap:6px}
+.pager-btn:hover:not(:disabled){border-color:var(--accent);color:var(--accent);background:var(--adim)}
+.pager-btn:disabled{opacity:.3;cursor:not-allowed}
+.pager-btn.active{border-color:var(--accent);background:var(--adim);color:var(--accent)}
+.pager-pages{display:flex;gap:4px;flex-wrap:wrap;justify-content:center}
+.pnum{width:34px;height:34px;border-radius:var(--radsm);background:var(--surface);border:1px solid var(--border);color:var(--text2);font-size:12px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s;display:grid;place-items:center}
+.pnum:hover{border-color:var(--border2);color:var(--text)}
+.pnum.on{border-color:var(--accent);background:var(--adim);color:var(--accent)}
+.pnum.ellipsis{cursor:default;border-color:transparent;background:transparent;color:var(--text3)}
+/* ── end pagination ── */
+
 #emuV{max-width:960px;margin:0 auto;padding:24px 28px 48px;display:none}
 .etop{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .einfo{display:flex;align-items:center;gap:10px}
@@ -112,6 +127,7 @@ footer a{color:var(--accent);text-decoration:none}
     <div class="ldst" id="ldst"><div class="spin"></div><div id="ldtxt">Loading games...</div></div>
     <div class="ggrid" id="ggrid"></div>
     <div class="emp" id="emp"><div style="font-size:48px;margin-bottom:12px">&#128269;</div><div style="font-size:15px">No games match your search</div></div>
+    <div class="pager" id="pager"></div>
   </div>
 </div>
 
@@ -155,6 +171,9 @@ var GH_BRANCH = 'main';
 var RAW = 'https://raw.githubusercontent.com/' + GH_USER + '/' + GH_REPO + '/' + GH_BRANCH;
 var THUMB_GH = 'https://raw.githubusercontent.com/libretro-thumbnails';
 
+var GAMES_PER_PAGE = 20;
+var currentPage = 1;
+
 var CONSOLES = [
   {id:'nes',name:'NES',core:'nes',color:'#ff5555',exts:['.nes','.fds'],tr:'Nintendo_-_Nintendo_Entertainment_System'},
   {id:'snes',name:'SNES',core:'snes',color:'#aa77ff',exts:['.smc','.sfc'],tr:'Nintendo_-_Super_Nintendo_Entertainment_System'},
@@ -172,14 +191,12 @@ var CONSOLES = [
 var cMap = {};
 for (var ci = 0; ci < CONSOLES.length; ci++) cMap[CONSOLES[ci].id] = CONSOLES[ci];
 
-/* Folder name in repo -> console id. gb2 maps to gb */
 var F2C = {
   nes:'nes', snes:'snes', gb:'gb', gb2:'gb', gbc:'gbc', gba:'gba',
   n64:'n64', nds:'nds', psx:'psx', segaMD:'segaMD', segaGG:'segaGG',
   atari2600:'atari2600', arcade:'arcade'
 };
 
-/* Emoji lookup */
 var EMO = [
   [/mario/i,'\uD83C\uDF44'],[/zelda|link/i,'\uD83D\uDDE1\uFE0F'],[/pokemon|poke/i,'\uD83D\uDC8E'],
   [/sonic/i,'\uD83D\uDD35'],[/mega.?man/i,'\uD83E\uDD16'],[/metroid/i,'\uD83D\uDE80'],
@@ -198,7 +215,6 @@ function getEmoji(n) {
   return fb[Math.abs(h) % fb.length];
 }
 
-/* Thumbnail URL builder - uses raw.githubusercontent.com (CORS safe) */
 function thumbSan(s) { return s.replace(/[&*/:`<>?\\|"]/g, '_'); }
 
 function getThumbUrls(fileName, consoleId) {
@@ -254,7 +270,7 @@ var search = '';
 var mFile = null;
 var done = false;
 
-/* Fetch games from GitHub Contents API - one folder at a time */
+/* Fetch games */
 function fetchGames() {
   var folders = Object.keys(F2C);
   var games = [];
@@ -263,10 +279,7 @@ function fetchGames() {
   var lastErr = '';
 
   function next() {
-    if (idx >= folders.length) {
-      finish();
-      return;
-    }
+    if (idx >= folders.length) { finish(); return; }
     var folder = folders[idx];
     var cid = F2C[folder];
     var c = cMap[cid];
@@ -353,19 +366,70 @@ function renderFilters() {
   h += '<input class="sbox" placeholder="Search games..." oninput="onS(this.value)" value="' + search + '">';
   el.innerHTML = h;
 }
+
 function setF(id) {
   filter = id;
+  currentPage = 1;
   var chips = document.querySelectorAll('.chip');
   for (var i = 0; i < chips.length; i++) {
     chips[i].classList.toggle('on', chips[i].getAttribute('data-id') === id);
   }
   renderGames();
 }
-function onS(v) { search = v.toLowerCase().trim(); renderGames(); }
 
-/* Render games */
+function onS(v) {
+  search = v.toLowerCase().trim();
+  currentPage = 1;
+  renderGames();
+}
+
+function goToPage(p) {
+  currentPage = p;
+  renderGames();
+  // Scroll to top of grid
+  var gsec = document.querySelector('.gsec');
+  if (gsec) gsec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* Build page number buttons with ellipsis logic */
+function buildPageNums(totalPages, cur) {
+  if (totalPages <= 1) return '';
+  var pages = [];
+
+  // Always show first, last, current ±2, and ellipsis between gaps
+  function addPage(n) {
+    if (n >= 1 && n <= totalPages) pages.push(n);
+  }
+
+  var visible = new Set();
+  visible.add(1);
+  visible.add(totalPages);
+  for (var d = -2; d <= 2; d++) {
+    var pg = cur + d;
+    if (pg >= 1 && pg <= totalPages) visible.add(pg);
+  }
+
+  var sorted = Array.from(visible).sort(function(a,b){return a-b;});
+  var h = '<div class="pager-pages">';
+  var prev = 0;
+  for (var i = 0; i < sorted.length; i++) {
+    if (sorted[i] - prev > 1) {
+      h += '<div class="pnum ellipsis">…</div>';
+    }
+    var isOn = sorted[i] === cur ? ' on' : '';
+    h += '<div class="pnum' + isOn + '" onclick="goToPage(' + sorted[i] + ')">' + sorted[i] + '</div>';
+    prev = sorted[i];
+  }
+  h += '</div>';
+  return h;
+}
+
+/* Render games with pagination */
 function renderGames() {
   var grid = document.getElementById('ggrid');
+  var pager = document.getElementById('pager');
+
+  // Build filtered list
   var list = [];
   for (var i = 0; i < GAMES.length; i++) {
     var g = GAMES[i];
@@ -373,12 +437,25 @@ function renderGames() {
     if (search && g.title.toLowerCase().indexOf(search) < 0) continue;
     list.push(g);
   }
-  document.getElementById('gcnt').textContent = list.length + ' game' + (list.length !== 1 ? 's' : '');
-  document.getElementById('emp').style.display = (done && list.length === 0 && GAMES.length > 0) ? 'block' : 'none';
+
+  var totalGames = list.length;
+  var totalPages = Math.max(1, Math.ceil(totalGames / GAMES_PER_PAGE));
+
+  // Clamp currentPage
+  if (currentPage > totalPages) currentPage = totalPages;
+  if (currentPage < 1) currentPage = 1;
+
+  document.getElementById('gcnt').textContent = totalGames + ' game' + (totalGames !== 1 ? 's' : '');
+  document.getElementById('emp').style.display = (done && totalGames === 0 && GAMES.length > 0) ? 'block' : 'none';
+
+  // Slice for current page (exclude "Load Custom ROM" card from count)
+  var startIdx = (currentPage - 1) * GAMES_PER_PAGE;
+  var endIdx = Math.min(startIdx + GAMES_PER_PAGE, totalGames);
+  var pageList = list.slice(startIdx, endIdx);
 
   var h = '';
-  for (var j = 0; j < list.length; j++) {
-    var g2 = list[j];
+  for (var j = 0; j < pageList.length; j++) {
+    var g2 = pageList[j];
     var c = cMap[g2.cid];
     var gi = GAMES.indexOf(g2);
     var delay = Math.min(j * 0.03, 0.6);
@@ -388,8 +465,31 @@ function renderGames() {
       '<div class="ginf"><div class="gn" title="' + g2.title + '">' + g2.title + '</div>' +
       '<span class="gt t-' + g2.cid + '">' + c.name + '</span></div></div>';
   }
-  h += '<div class="upc" onclick="openM()"><div class="upi">+</div><div class="upl">Load Custom ROM</div><div class="ups">Play your own files</div></div>';
+
+  // Always show the "Load Custom ROM" card at the end of the last page
+  if (currentPage === totalPages) {
+    h += '<div class="upc" onclick="openM()"><div class="upi">+</div><div class="upl">Load Custom ROM</div><div class="ups">Play your own files</div></div>';
+  }
+
   grid.innerHTML = h;
+
+  // Render pagination controls
+  if (totalPages > 1) {
+    var pageInfo = 'Page ' + currentPage + ' of ' + totalPages
+      + ' &nbsp;·&nbsp; ' + (startIdx + 1) + '–' + endIdx + ' of ' + totalGames + ' games';
+
+    pager.innerHTML =
+      '<span class="pager-info">' + pageInfo + '</span>' +
+      '<button class="pager-btn" onclick="goToPage(' + (currentPage - 1) + ')" ' + (currentPage === 1 ? 'disabled' : '') + '>' +
+        '&#8592; Prev' +
+      '</button>' +
+      buildPageNums(totalPages, currentPage) +
+      '<button class="pager-btn" onclick="goToPage(' + (currentPage + 1) + ')" ' + (currentPage === totalPages ? 'disabled' : '') + '>' +
+        'Next &#8594;' +
+      '</button>';
+  } else {
+    pager.innerHTML = '';
+  }
 
   // Load covers after render
   setTimeout(function() {
@@ -416,7 +516,6 @@ function launchEmu(title, con, romUrl) {
   document.getElementById('eBdg').textContent = con.name;
   document.getElementById('game').innerHTML = '';
 
-  // Clean old EmulatorJS
   var old = document.querySelectorAll('script[src*="emulatorjs"]');
   for (var i = 0; i < old.length; i++) old[i].parentNode.removeChild(old[i]);
   var oldCss = document.querySelectorAll('.ejs--css, #ejs_css');
