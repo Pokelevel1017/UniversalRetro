@@ -17,8 +17,8 @@
   .hero{position:relative;padding:64px 28px 40px;text-align:center;overflow:hidden}.hero::before{content:'';position:absolute;top:-180px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,var(--accent-glow) 0%,transparent 65%);pointer-events:none}.hero h1{font-family:'Press Start 2P',monospace;font-size:clamp(16px,3.5vw,30px);line-height:1.8;margin-bottom:12px;position:relative}.hero h1 .gl{color:var(--accent);text-shadow:0 0 30px var(--accent-glow)}.hero p{color:var(--text2);font-size:15px;max-width:520px;margin:0 auto;line-height:1.7;position:relative}
   .filters{display:flex;align-items:center;gap:10px;padding:20px 28px 0;max-width:1260px;margin:0 auto;flex-wrap:wrap}.filter-chip{padding:7px 15px;border-radius:20px;font-size:12px;font-weight:600;border:1px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;transition:all .2s;font-family:'Outfit',sans-serif;white-space:nowrap}.filter-chip:hover{border-color:var(--border2);color:var(--text)}.filter-chip.active{border-color:var(--accent);background:var(--accent-dim);color:var(--accent)}.chip-count{display:inline-block;margin-left:4px;font-size:10px;opacity:.6}.search-box{flex:1;min-width:160px;padding:8px 14px;background:var(--surface);border:1px solid var(--border);border-radius:20px;color:var(--text);font-size:13px;font-family:'Outfit',sans-serif;outline:none;transition:border-color .2s}.search-box::placeholder{color:var(--text3)}.search-box:focus{border-color:var(--accent)}
   .games-section{padding:24px 28px 48px;max-width:1260px;margin:0 auto}.games-header{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}.games-title{font-family:'Press Start 2P',monospace;font-size:11px;color:var(--text2);letter-spacing:1.5px;text-transform:uppercase}.games-title span{color:var(--accent)}.games-count{font-size:12px;color:var(--text3)}.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:16px}
-  .game-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all .25s;position:relative}.game-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,230,122,0.07)}.game-card:hover .cover-ov{opacity:1}
-  .game-cover{width:100%;aspect-ratio:1/1;position:relative;overflow:hidden}.cover-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;background-size:cover;background-position:center;background-repeat:no-repeat}.cover-bg.has-img span{display:none}.cover-ov{position:absolute;inset:0;background:rgba(0,230,122,0.12);display:grid;place-items:center;opacity:0;transition:opacity .25s}.play-icon{width:48px;height:48px;background:var(--accent);border-radius:50%;display:grid;place-items:center;box-shadow:0 4px 20px rgba(0,230,122,0.4)}.play-icon svg{width:20px;height:20px;fill:var(--bg);margin-left:2px}
+  .game-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all .25s}.game-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,230,122,0.07)}.game-card:hover .cover-ov{opacity:1}
+  .game-cover{width:100%;aspect-ratio:1/1;position:relative;overflow:hidden}.cover-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;background-size:cover;background-position:center}.cover-bg.has-img span{display:none}.cover-ov{position:absolute;inset:0;background:rgba(0,230,122,0.12);display:grid;place-items:center;opacity:0;transition:opacity .25s}.play-icon{width:48px;height:48px;background:var(--accent);border-radius:50%;display:grid;place-items:center;box-shadow:0 4px 20px rgba(0,230,122,0.4)}.play-icon svg{width:20px;height:20px;fill:var(--bg);margin-left:2px}
   .game-info{padding:12px 14px 14px}.game-title{font-size:13px;font-weight:600;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.gtag{font-size:9px;font-family:'Press Start 2P',monospace;padding:3px 7px;border-radius:4px;letter-spacing:.5px}
   .tag-nes{background:#ff2a2a22;color:#ff5555}.tag-snes{background:#9966ff22;color:#aa77ff}.tag-gb{background:#33cc3322;color:#55dd55}.tag-gbc{background:#9944cc22;color:#bb66ee}.tag-gba{background:#3366ff22;color:#5588ff}.tag-n64{background:#ffcc0022;color:#ffdd44}.tag-nds{background:#44aaff22;color:#66bbff}.tag-psx{background:#ffffff11;color:#aaaacc}.tag-segaMD{background:#2255ff22;color:#4477ff}.tag-segaGG{background:#ff880022;color:#ffaa44}.tag-atari2600{background:#ff660022;color:#ff8833}.tag-arcade{background:#ff44aa22;color:#ff66cc}
   @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}.cover-loading{background:linear-gradient(90deg,var(--bg3) 25%,var(--bg4) 50%,var(--bg3) 75%)!important;background-size:200% 100%!important;animation:shimmer 1.5s infinite}
@@ -27,23 +27,19 @@
   .modal-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(4,6,10,0.8);backdrop-filter:blur(8px);place-items:center}.modal-overlay.open{display:grid}.modal{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px;width:480px;max-width:92vw}.modal-title{font-family:'Press Start 2P',monospace;font-size:13px;margin-bottom:20px;color:var(--accent)}.modal-label{display:block;font-size:13px;font-weight:600;margin-bottom:8px;color:var(--text2)}.modal-select{width:100%;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:14px;font-family:'Outfit',sans-serif;outline:none;margin-bottom:20px;cursor:pointer}.modal-select:focus{border-color:var(--accent)}.modal-select option{background:var(--bg2);color:var(--text)}.modal-dropzone{border:2px dashed var(--border);border-radius:var(--radius-sm);padding:36px 20px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:20px}.modal-dropzone:hover,.modal-dropzone.dragover{border-color:var(--accent);background:var(--accent-dim)}.modal-dropzone.has-file{border-style:solid;border-color:var(--accent);background:var(--accent-dim)}.modal-dropzone-icon{font-size:32px;margin-bottom:8px}.modal-dropzone-text{font-size:14px;font-weight:500}.modal-dropzone-sub{font-size:12px;color:var(--text3);margin-top:4px}.modal-file-row{display:none;align-items:center;gap:10px;padding:10px 14px;background:var(--bg3);border-radius:var(--radius-xs);font-size:13px;margin-bottom:20px}.modal-file-row.visible{display:flex}.modal-file-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500}.modal-file-size{color:var(--text3);font-size:12px}.modal-file-x{color:var(--red);cursor:pointer;font-size:16px}.modal-actions{display:flex;gap:10px;justify-content:flex-end}.modal-cancel{padding:10px 22px;background:var(--surface);border:1px solid var(--border);color:var(--text2);border-radius:var(--radius-sm);font-size:13px;font-weight:500;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s}.modal-cancel:hover{border-color:var(--text3);color:var(--text)}.modal-play{padding:10px 28px;background:var(--accent);border:none;color:var(--bg);border-radius:var(--radius-sm);font-size:13px;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s}.modal-play:hover{background:var(--accent2)}.modal-play:disabled{opacity:.35;cursor:not-allowed}
   footer{border-top:1px solid var(--border);padding:28px;text-align:center;color:var(--text3);font-size:11px;line-height:1.8}footer a{color:var(--accent);text-decoration:none}
   .loading-state{text-align:center;padding:48px 20px;color:var(--text3)}.loading-state .spinner{display:inline-block;width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:12px}@keyframes spin{to{transform:rotate(360deg)}}.empty-state{text-align:center;padding:48px 20px;color:var(--text3);display:none}.empty-icon{font-size:48px;margin-bottom:12px}.empty-text{font-size:15px}
-  .error-box{max-width:500px;margin:0 auto;padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);text-align:center}.error-box code{display:block;margin-top:8px;padding:8px 12px;background:var(--bg3);border-radius:var(--radius-xs);font-size:12px;color:var(--red);word-break:break-all}
   @media(max-width:768px){nav{padding:0 14px}.nav-r{display:none}.hero{padding:40px 16px 28px}.filters{padding:14px 16px 0;gap:8px}.games-section{padding:18px 16px 32px}.games-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}#emulatorView{padding:14px 12px 32px}}
   @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}.anim{animation:fadeUp .4s ease both}
 </style>
 </head>
 <body>
-<nav>
-  <a class="logo" onclick="goHome()"><div class="logo-mark">▶</div><div class="logo-label">RETRO<span>VAULT</span></div></a>
-  <div class="nav-r"><button class="nav-tab active" onclick="goHome()">Library</button><a class="nav-tab" href="https://github.com/Pokelevel1017/UniversalRetro" target="_blank">GitHub ↗</a></div>
-</nav>
+<nav><a class="logo" onclick="goHome()"><div class="logo-mark">▶</div><div class="logo-label">RETRO<span>VAULT</span></div></a><div class="nav-r"><button class="nav-tab active" onclick="goHome()">Library</button><a class="nav-tab" href="https://github.com/Pokelevel1017/UniversalRetro" target="_blank">GitHub ↗</a></div></nav>
 <main>
   <div id="homeView">
     <section class="hero"><h1 class="anim">Play <span class="gl">Retro Games</span> Instantly</h1><p class="anim" style="animation-delay:.08s">Pick a game from the library or drop in your own ROM.</p></section>
     <div class="filters" id="filters"></div>
     <div class="games-section">
       <div class="games-header"><div class="games-title"><span>▸</span> Game Library</div><div class="games-count" id="gamesCount"></div></div>
-      <div class="loading-state" id="loadingState"><div class="spinner"></div><div>Loading games from GitHub...</div></div>
+      <div class="loading-state" id="loadingState"><div class="spinner"></div><div id="loadingText">Loading games from GitHub...</div></div>
       <div class="games-grid" id="gamesGrid"></div>
       <div class="empty-state" id="emptyState"><div class="empty-icon">🔍</div><div class="empty-text">No games match your search</div></div>
     </div>
@@ -54,136 +50,118 @@
     <div class="controls-bar"><div class="ctrl-g"><span class="ctrl-k">WASD</span>/<span class="ctrl-k">Arrows</span> Move</div><div class="ctrl-g"><span class="ctrl-k">J</span> A</div><div class="ctrl-g"><span class="ctrl-k">K</span> B</div><div class="ctrl-g"><span class="ctrl-k">Enter</span> Start</div><div class="ctrl-g"><span class="ctrl-k">Shift</span> Select</div><div class="ctrl-g"><span class="ctrl-k">F11</span> Fullscreen</div></div>
   </div>
 </main>
-<div class="modal-overlay" id="uploadModal">
-  <div class="modal">
-    <div class="modal-title">Load Custom ROM</div>
-    <label class="modal-label">Console</label><select class="modal-select" id="modalConsole"></select>
-    <label class="modal-label">ROM File</label>
-    <div class="modal-dropzone" id="modalDrop"><div class="modal-dropzone-icon">📂</div><div class="modal-dropzone-text">Drop ROM or click to browse</div><div class="modal-dropzone-sub" id="modalExts">Select a console above</div></div>
-    <input type="file" id="modalFileInput" hidden>
-    <div class="modal-file-row" id="modalFileRow"><span>📁</span><span class="modal-file-name" id="modalFileName"></span><span class="modal-file-size" id="modalFileSize"></span><span class="modal-file-x" id="modalFileX">✕</span></div>
-    <div class="modal-actions"><button class="modal-cancel" onclick="closeModal()">Cancel</button><button class="modal-play" id="modalPlayBtn" disabled onclick="playCustom()">▶ Play</button></div>
-  </div>
-</div>
-<footer>RetroVault — Powered by <a href="https://emulatorjs.org/" target="_blank">EmulatorJS</a> · Covers from <a href="https://thumbnails.libretro.com/" target="_blank">LibRetro</a></footer>
+<div class="modal-overlay" id="uploadModal"><div class="modal"><div class="modal-title">Load Custom ROM</div><label class="modal-label">Console</label><select class="modal-select" id="modalConsole"></select><label class="modal-label">ROM File</label><div class="modal-dropzone" id="modalDrop"><div class="modal-dropzone-icon">📂</div><div class="modal-dropzone-text">Drop ROM or click to browse</div><div class="modal-dropzone-sub" id="modalExts">Select a console above</div></div><input type="file" id="modalFileInput" hidden><div class="modal-file-row" id="modalFileRow"><span>📁</span><span class="modal-file-name" id="modalFileName"></span><span class="modal-file-size" id="modalFileSize"></span><span class="modal-file-x" id="modalFileX">✕</span></div><div class="modal-actions"><button class="modal-cancel" onclick="closeModal()">Cancel</button><button class="modal-play" id="modalPlayBtn" disabled onclick="playCustom()">▶ Play</button></div></div></div>
+<footer>RetroVault — Powered by <a href="https://emulatorjs.org/" target="_blank">EmulatorJS</a> · Covers from <a href="https://github.com/libretro-thumbnails" target="_blank">LibRetro Thumbnails</a></footer>
 
 <script>
-/* ═══════════════════════════════════════════════════════════
-   CONFIG — Your GitHub repo
-   ═══════════════════════════════════════════════════════════ */
 const GH_USER = 'Pokelevel1017';
 const GH_REPO = 'UniversalRetro';
 const GH_BRANCH = 'main';
 const RAW = `https://raw.githubusercontent.com/${GH_USER}/${GH_REPO}/${GH_BRANCH}`;
-const THUMB = 'https://thumbnails.libretro.com';
+
+/*
+  THUMBNAILS — uses raw.githubusercontent.com from the libretro-thumbnails org.
+  This works with CORS (unlike thumbnails.libretro.com which blocks it).
+  
+  URL format:
+  https://raw.githubusercontent.com/libretro-thumbnails/<REPO_NAME>/master/Named_Boxarts/<GAME>.png
+  
+  Repo names use underscores instead of spaces:
+  "Nintendo - Game Boy" → "Nintendo_-_Game_Boy"
+*/
+const THUMB_GH = 'https://raw.githubusercontent.com/libretro-thumbnails';
 
 const CONSOLES = [
-  { id:'nes', name:'NES', core:'nes', color:'#ff5555', exts:['.nes','.fds'], ts:'Nintendo - Nintendo Entertainment System' },
-  { id:'snes', name:'SNES', core:'snes', color:'#aa77ff', exts:['.smc','.sfc'], ts:'Nintendo - Super Nintendo Entertainment System' },
-  { id:'gb', name:'Game Boy', core:'gambatte', color:'#55dd55', exts:['.gb'], ts:'Nintendo - Game Boy' },
-  { id:'gbc', name:'Game Boy Color', core:'gambatte', color:'#bb66ee', exts:['.gbc'], ts:'Nintendo - Game Boy Color' },
-  { id:'gba', name:'GBA', core:'mgba', color:'#5588ff', exts:['.gba'], ts:'Nintendo - Game Boy Advance' },
-  { id:'n64', name:'N64', core:'mupen64plus_next', color:'#ffdd44', exts:['.z64','.n64','.v64'], ts:'Nintendo - Nintendo 64' },
-  { id:'nds', name:'Nintendo DS', core:'melonds', color:'#66bbff', exts:['.nds'], ts:'Nintendo - Nintendo DS' },
-  { id:'psx', name:'PlayStation', core:'pcsx_rearmed', color:'#aaaacc', exts:['.bin','.cue','.pbp','.chd'], ts:'Sony - PlayStation' },
-  { id:'segaMD', name:'Sega Genesis', core:'genesis_plus_gx', color:'#4477ff', exts:['.md','.gen','.smd'], ts:'Sega - Mega Drive - Genesis' },
-  { id:'segaGG', name:'Game Gear', core:'genesis_plus_gx', color:'#ffaa44', exts:['.gg'], ts:'Sega - Game Gear' },
-  { id:'atari2600', name:'Atari 2600', core:'stella2014', color:'#ff8833', exts:['.a26'], ts:'Atari - 2600' },
-  { id:'arcade', name:'Arcade', core:'mame2003', color:'#ff66cc', exts:['.zip'], ts:'MAME' },
+  { id:'nes', name:'NES', core:'nes', color:'#ff5555', exts:['.nes','.fds'],
+    thumbRepo:'Nintendo_-_Nintendo_Entertainment_System' },
+  { id:'snes', name:'SNES', core:'snes', color:'#aa77ff', exts:['.smc','.sfc'],
+    thumbRepo:'Nintendo_-_Super_Nintendo_Entertainment_System' },
+  { id:'gb', name:'Game Boy', core:'gambatte', color:'#55dd55', exts:['.gb'],
+    thumbRepo:'Nintendo_-_Game_Boy' },
+  { id:'gbc', name:'Game Boy Color', core:'gambatte', color:'#bb66ee', exts:['.gbc'],
+    thumbRepo:'Nintendo_-_Game_Boy_Color' },
+  { id:'gba', name:'GBA', core:'mgba', color:'#5588ff', exts:['.gba'],
+    thumbRepo:'Nintendo_-_Game_Boy_Advance' },
+  { id:'n64', name:'N64', core:'mupen64plus_next', color:'#ffdd44', exts:['.z64','.n64','.v64'],
+    thumbRepo:'Nintendo_-_Nintendo_64' },
+  { id:'nds', name:'Nintendo DS', core:'melonds', color:'#66bbff', exts:['.nds'],
+    thumbRepo:'Nintendo_-_Nintendo_DS' },
+  { id:'psx', name:'PlayStation', core:'pcsx_rearmed', color:'#aaaacc', exts:['.bin','.cue','.pbp','.chd'],
+    thumbRepo:'Sony_-_PlayStation' },
+  { id:'segaMD', name:'Sega Genesis', core:'genesis_plus_gx', color:'#4477ff', exts:['.md','.gen','.smd'],
+    thumbRepo:'Sega_-_Mega_Drive_-_Genesis' },
+  { id:'segaGG', name:'Game Gear', core:'genesis_plus_gx', color:'#ffaa44', exts:['.gg'],
+    thumbRepo:'Sega_-_Game_Gear' },
+  { id:'atari2600', name:'Atari 2600', core:'stella2014', color:'#ff8833', exts:['.a26'],
+    thumbRepo:'Atari_-_2600' },
+  { id:'arcade', name:'Arcade', core:'mame2003', color:'#ff66cc', exts:['.zip'],
+    thumbRepo:'MAME' },
 ];
 const cMap={}; CONSOLES.forEach(c=>cMap[c.id]=c);
 
-/* ── Emoji fallbacks ── */
-const EM=[[/mario/i,'🍄'],[/zelda|link/i,'🗡️'],[/pokemon|poke/i,'💎'],[/sonic/i,'🔵'],[/mega.?man/i,'🤖'],[/metroid/i,'🚀'],[/kirby/i,'🩷'],[/donkey.?kong/i,'🦍'],[/street.?fighter/i,'👊'],[/castlevania/i,'🧛'],[/contra/i,'💥'],[/tetris/i,'🟦'],[/punch/i,'🥊'],[/dragon/i,'🐉'],[/fire/i,'🔥'],[/star/i,'⭐'],[/pac/i,'🟡'],[/crash/i,'🧱'],[/spyro/i,'🐉'],[/kart|race/i,'🏎️'],[/war|army/i,'⚔️'],[/emblem|shield/i,'🛡️'],[/gold/i,'🥇'],[/crystal/i,'💠'],[/silver/i,'🥈'],[/smash/i,'💢'],[/world/i,'🌍'],[/chrono/i,'⏰'],[/final.?fantasy/i,'⚔️'],[/mega/i,'💙'],[/battle/i,'⚔️'],[/super/i,'⭐'],[/advance/i,'🎖️']];
+const FOLDER_TO_CONSOLE = {
+  'nes':'nes','snes':'snes',
+  'gb':'gb','gb2':'gb',
+  'gbc':'gbc','gba':'gba',
+  'n64':'n64','nds':'nds','psx':'psx',
+  'segaMD':'segaMD','segaGG':'segaGG',
+  'atari2600':'atari2600','arcade':'arcade',
+};
+
+const EM=[[/mario/i,'🍄'],[/zelda|link/i,'🗡️'],[/pokemon|poke/i,'💎'],[/sonic/i,'🔵'],[/mega.?man/i,'🤖'],[/metroid/i,'🚀'],[/kirby/i,'🩷'],[/donkey.?kong/i,'🦍'],[/street.?fighter/i,'👊'],[/castlevania/i,'🧛'],[/contra/i,'💥'],[/tetris/i,'🟦'],[/punch/i,'🥊'],[/dragon/i,'🐉'],[/fire/i,'🔥'],[/star/i,'⭐'],[/pac/i,'🟡'],[/crash/i,'🧱'],[/spyro/i,'🐉'],[/kart|race/i,'🏎️'],[/war|army/i,'⚔️'],[/emblem|shield/i,'🛡️'],[/gold/i,'🥇'],[/crystal/i,'💠'],[/silver/i,'🥈'],[/smash/i,'💢'],[/world/i,'🌍'],[/chrono/i,'⏰']];
 function getEmoji(n){for(const[r,e]of EM)if(r.test(n))return e;const f=['🎮','🕹️','👾','🎯','🏆','⚡','🌟','💫','🔶'];let h=0;for(let i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))|0;return f[Math.abs(h)%f.length]}
 
-/* ═══════════════════════════════════════════════════════════
-   THUMBNAIL MATCHING
-   
-   LibRetro uses No-Intro naming: "Title (Region).png"
-   We generate many candidate URLs from the ROM filename
-   and try them all until one loads.
-   
-   Special chars &*/:`<>?\|" are replaced with _
-   ═══════════════════════════════════════════════════════════ */
-function thumbSan(n){ return n.replace(/[&*/:`<>?\\|"]/g,'_'); }
+/* Thumbnail: invalid chars &*/:`<>?\|" replaced with _ */
+function thumbSan(n){return n.replace(/[&*/:`<>?\\|"]/g,'_')}
 
-function thumbUrls(file, cid){
-  const c = cMap[cid];
-  if(!c || !c.ts) return [];
-  const base = `${THUMB}/${encodeURIComponent(c.ts)}/Named_Boxarts/`;
+function thumbUrls(file, consoleId){
+  const c = cMap[consoleId];
+  if(!c || !c.thumbRepo) return [];
+  const base = `${THUMB_GH}/${c.thumbRepo}/master/Named_Boxarts/`;
   const noExt = file.replace(/\.[^.]+$/, '');
   const urls = new Set();
+  function add(n){ urls.add(base + encodeURIComponent(thumbSan(n)) + '.png'); }
 
-  function add(name){ urls.add(base + encodeURIComponent(thumbSan(name)) + '.png'); }
-
-  // 1) Exact filename without extension
+  // 1) Exact filename (minus ext)
   add(noExt);
 
-  // 2) Clean version (no parens, no brackets, no underscores)
-  const clean = noExt
-    .replace(/\s*\(.*?\)\s*/g, ' ')
-    .replace(/\s*\[.*?\]\s*/g, ' ')
-    .replace(/_/g, ' ')
-    .replace(/\s*-\s*/g, ' - ')
-    .replace(/\s+/g, ' ')
-    .trim();
-
-  // 3) Try with common regions
-  const regions = [
-    '(USA)', '(World)', '(Europe)', '(USA, Europe)',
-    '(Japan)', '(Japan, USA)', '(USA, Australia)',
-    '(Europe, Australia)', '(Japan, Europe)',
-  ];
+  // 2) Clean name + region variants
+  const clean = noExt.replace(/\s*\(.*?\)\s*/g,' ').replace(/\s*\[.*?\]\s*/g,' ')
+    .replace(/_/g,' ').replace(/\s+/g,' ').trim();
+  const regions = ['(USA)','(World)','(Europe)','(Japan)','(Japan, USA)','(USA, Europe)'];
   for(const r of regions) add(clean + ' ' + r);
 
-  // 4) If starts with "The", try swapped: "Legend of Zelda, The (USA)"
+  // 3) "The" swap: "The Legend of Zelda" → "Legend of Zelda, The"
   if(/^the\s+/i.test(clean)){
     const sw = clean.replace(/^the\s+/i,'').trim() + ', The';
     for(const r of regions) add(sw + ' ' + r);
   }
 
-  // 5) Try with "Pokemon" → "Pokemon - " prefix style
-  //    LibRetro often uses "Pokemon - Red Version (USA)" format
-  const pokemonMatch = clean.match(/^(pokemon|pok[eé]mon)\s+(.+)/i);
-  if(pokemonMatch){
-    const base2 = pokemonMatch[1];
-    const rest = pokemonMatch[2];
-    for(const r of regions){
-      add(base2 + ' - ' + rest + ' Version ' + r);
-      add(base2 + ' - ' + rest + ' ' + r);
-    }
-  }
+  // 4) Pokemon naming: "Pokemon Emerald" → "Pokemon - Emerald Version (USA)"
+  const pm = clean.match(/^(pokemon|poke)\s+(.+)/i);
+  if(pm){ for(const r of regions){ add('Pokemon - '+pm[2]+' Version '+r); add('Pokemon - '+pm[2]+' '+r); }}
 
-  // 6) Try adding "Version" suffix for common games
+  // 5) Zelda naming: "Zelda - Minish Cap" → "Legend of Zelda, The - The Minish Cap (USA)"
+  const zm = clean.match(/^zelda\s*[-:]\s*(.+)/i);
+  if(zm){ for(const r of regions){ add('Legend of Zelda, The - '+zm[1]+' '+r); add('Legend of Zelda, The - The '+zm[1]+' '+r); }}
+
+  // 6) Generic "Version" suffix
   for(const r of regions) add(clean + ' Version ' + r);
 
-  // 7) Try with subtitle separator variations
-  //    "Zelda - A Link to the Past" → "Legend of Zelda, The - A Link to the Past (USA)"
-  const zeldaMatch = clean.match(/^zelda\s*[-:]\s*(.+)/i);
-  if(zeldaMatch){
-    for(const r of regions){
-      add('Legend of Zelda, The - ' + zeldaMatch[1] + ' ' + r);
-      add('Legend of Zelda, The ' + r);
-    }
-  }
-
-  // 8) Also try filename as-is if it already has region tags
+  // 7) If already has region in parens, use as-is
   if(/\(.*?\)/.test(noExt)) add(noExt);
 
   return [...urls];
 }
 
-/* Load cover: try each URL, first hit wins */
 function loadCover(el, g){
-  const urls = thumbUrls(g.file, g.console);
+  const urls = thumbUrls(g.file, g.consoleId);
   if(!urls.length) return;
   let i = 0;
   el.classList.add('cover-loading');
   (function next(){
     if(i >= urls.length){ el.classList.remove('cover-loading'); return; }
     const img = new Image();
-    img.crossOrigin = 'anonymous';
     img.onload = () => {
       el.style.backgroundImage = `url('${urls[i]}')`;
       el.classList.add('has-img');
@@ -194,57 +172,59 @@ function loadCover(el, g){
   })();
 }
 
-/* ── State ── */
-let GAMES=[], activeFilter='all', searchQuery='', modalFile=null, loaded=false;
+let GAMES=[],activeFilter='all',searchQuery='',modalFile=null,loaded=false;
 
-/* ── Fetch from GitHub API ── */
 async function fetchGames(){
-  try {
-    const r = await fetch(`https://api.github.com/repos/${GH_USER}/${GH_REPO}/git/trees/${GH_BRANCH}?recursive=1`);
-    if(!r.ok) throw new Error(`GitHub API returned ${r.status}${r.status===403?' (rate limited — try again in a minute)':''}`);
-    const d = await r.json();
-    const games = [];
-    for(const item of d.tree){
-      if(item.type !== 'blob') continue;
-      const parts = item.path.split('/');
-      if(parts.length !== 2) continue;
-      const folder = parts[0], file = parts[1];
-      const ext = '.' + file.split('.').pop().toLowerCase();
-      const c = cMap[folder];
-      if(!c || !c.exts.some(e => ext === e)) continue;
-      const title = file.replace(/\.[^.]+$/,'')
-        .replace(/\s*\(.*?\)\s*/g,' ').replace(/\s*\[.*?\]\s*/g,' ')
-        .replace(/_/g,' ').replace(/\s+/g,' ').trim();
-      games.push({ title, console:folder, file, path:item.path, emoji:getEmoji(title) });
-    }
-    const ord={}; CONSOLES.forEach((c,i)=>ord[c.id]=i);
-    games.sort((a,b)=>{ const d=(ord[a.console]??99)-(ord[b.console]??99); return d!==0?d:a.title.localeCompare(b.title); });
-    GAMES = games;
-    loaded = true;
-    document.getElementById('loadingState').style.display = 'none';
-    renderFilters(); renderGames();
-    console.log(`✅ Loaded ${games.length} games from GitHub`);
-  } catch(err) {
-    loaded = true;
-    document.getElementById('loadingState').innerHTML = `
-      <div class="error-box">
-        <div class="empty-icon">⚠️</div>
-        <div style="font-size:15px;font-weight:600;margin-bottom:8px">Couldn't load games</div>
-        <div style="color:var(--text2);font-size:13px;line-height:1.6">
-          This site needs to be hosted on a web server (GitHub Pages, Netlify, etc.).<br>
-          Opening the HTML file directly won't work because the GitHub API blocks requests from <code style="background:var(--bg3);padding:2px 6px;border-radius:3px;font-size:11px">file://</code> origins.
-        </div>
-        <code>${err.message}</code>
-        <div style="margin-top:16px;color:var(--text3);font-size:12px">You can still load custom ROMs using the button below ↓</div>
-      </div>`;
-    renderFilters(); renderGames();
+  const setStatus=(t)=>{document.getElementById('loadingText').textContent=t;};
+  const games=[];
+  const folders=Object.keys(FOLDER_TO_CONSOLE);
+  let foundAny=false, lastError='';
+
+  for(const folder of folders){
+    const consoleId=FOLDER_TO_CONSOLE[folder];
+    const c=cMap[consoleId]; if(!c)continue;
+    setStatus(`Scanning /${folder}...`);
+    try{
+      const url=`https://api.github.com/repos/${GH_USER}/${GH_REPO}/contents/${folder}?ref=${GH_BRANCH}`;
+      console.log(`[RetroVault] Fetching: ${url}`);
+      const r=await fetch(url);
+      if(r.status===404){console.log(`[RetroVault] /${folder} not found, skipping`);continue;}
+      if(!r.ok){const t=await r.text();console.warn(`[RetroVault] /${folder} error ${r.status}: ${t}`);lastError=`API ${r.status}`;continue;}
+      const items=await r.json();
+      if(!Array.isArray(items))continue;
+      let count=0;
+      for(const item of items){
+        if(item.type!=='file')continue;
+        const ext='.'+item.name.split('.').pop().toLowerCase();
+        if(!c.exts.some(e=>ext===e))continue;
+        const title=item.name.replace(/\.[^.]+$/,'').replace(/\s*\(.*?\)\s*/g,' ').replace(/\s*\[.*?\]\s*/g,' ').replace(/_/g,' ').replace(/\s+/g,' ').trim();
+        games.push({ title, consoleId, folder, file:item.name, emoji:getEmoji(title) });
+        foundAny=true; count++;
+      }
+      console.log(`[RetroVault] /${folder} → ${consoleId}: ${count} ROMs`);
+    }catch(err){console.error(`[RetroVault] /${folder}:`,err);lastError=err.message;}
   }
+
+  if(!foundAny && lastError){
+    document.getElementById('loadingState').innerHTML=`
+      <div style="max-width:460px;margin:0 auto;padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:14px;text-align:center">
+        <div style="font-size:48px;margin-bottom:12px">⚠️</div>
+        <div style="font-size:15px;font-weight:600;margin-bottom:8px">Couldn't load games</div>
+        <div style="color:var(--text2);font-size:13px;line-height:1.6;margin-bottom:8px">Error: ${lastError}</div>
+        <div style="color:var(--text3);font-size:12px">Check browser console (F12) for details.</div>
+      </div>`;
+  } else { document.getElementById('loadingState').style.display='none'; }
+
+  const ord={};CONSOLES.forEach((c,i)=>ord[c.id]=i);
+  games.sort((a,b)=>{const d=(ord[a.consoleId]??99)-(ord[b.consoleId]??99);return d!==0?d:a.title.localeCompare(b.title);});
+  GAMES=games;loaded=true;
+  console.log(`[RetroVault] ✅ ${games.length} games loaded`);
+  renderFilters();renderGames();
 }
 
-/* ── Filters ── */
 function renderFilters(){
   const el=document.getElementById('filters');
-  const ct={all:GAMES.length};CONSOLES.forEach(c=>{const n=GAMES.filter(g=>g.console===c.id).length;if(n)ct[c.id]=n;});
+  const ct={all:GAMES.length};CONSOLES.forEach(c=>{const n=GAMES.filter(g=>g.consoleId===c.id).length;if(n)ct[c.id]=n;});
   let h=`<button class="filter-chip active" data-id="all" onclick="setFilter('all')">All<span class="chip-count">${ct.all}</span></button>`;
   CONSOLES.forEach(c=>{if(ct[c.id])h+=`<button class="filter-chip" data-id="${c.id}" onclick="setFilter('${c.id}')">${c.name}<span class="chip-count">${ct[c.id]}</span></button>`;});
   h+=`<input type="text" class="search-box" placeholder="Search games..." oninput="onSearch(this.value)" value="${searchQuery}">`;
@@ -253,39 +233,27 @@ function renderFilters(){
 function setFilter(id){activeFilter=id;document.querySelectorAll('.filter-chip').forEach(el=>el.classList.toggle('active',el.dataset.id===id));renderGames();}
 function onSearch(v){searchQuery=v.toLowerCase().trim();renderGames();}
 
-/* ── Render ── */
 function renderGames(){
   const grid=document.getElementById('gamesGrid');
   let list=GAMES;
-  if(activeFilter!=='all')list=list.filter(g=>g.console===activeFilter);
+  if(activeFilter!=='all')list=list.filter(g=>g.consoleId===activeFilter);
   if(searchQuery)list=list.filter(g=>g.title.toLowerCase().includes(searchQuery));
   document.getElementById('gamesCount').textContent=`${list.length} game${list.length!==1?'s':''}`;
   document.getElementById('emptyState').style.display=(loaded&&list.length===0&&GAMES.length>0)?'block':'none';
   let h='';
-  list.forEach((g,i)=>{const c=cMap[g.console];
-    h+=`<div class="game-card anim" style="animation-delay:${Math.min(i*0.03,0.6)}s" onclick="playGame(${GAMES.indexOf(g)})"><div class="game-cover"><div class="cover-bg" data-gi="${GAMES.indexOf(g)}" style="background-color:${c.color}18"><span>${g.emoji}</span></div><div class="cover-ov"><div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div></div><div class="game-info"><div class="game-title" title="${g.title}">${g.title}</div><span class="gtag tag-${g.console}">${c.name}</span></div></div>`;
+  list.forEach((g,i)=>{const c=cMap[g.consoleId];
+    h+=`<div class="game-card anim" style="animation-delay:${Math.min(i*0.03,0.6)}s" onclick="playGame(${GAMES.indexOf(g)})"><div class="game-cover"><div class="cover-bg" data-gi="${GAMES.indexOf(g)}" style="background-color:${c.color}18"><span>${g.emoji}</span></div><div class="cover-ov"><div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div></div><div class="game-info"><div class="game-title" title="${g.title}">${g.title}</div><span class="gtag tag-${g.consoleId}">${c.name}</span></div></div>`;
   });
   h+=`<div class="upload-card" onclick="openModal()"><div class="plus-icon">+</div><div class="upload-label">Load Custom ROM</div><div class="upload-sub">Play your own files</div></div>`;
   grid.innerHTML=h;
-  // Load covers
-  requestAnimationFrame(()=>{
-    document.querySelectorAll('.cover-bg[data-gi]').forEach(el=>{
-      const g=GAMES[+el.dataset.gi];
-      if(g) loadCover(el,g);
-    });
-  });
+  requestAnimationFrame(()=>{document.querySelectorAll('.cover-bg[data-gi]').forEach(el=>{const g=GAMES[+el.dataset.gi];if(g)loadCover(el,g);});});
 }
 
-/* ── Play ── */
-function playGame(i){
-  const g=GAMES[i],c=cMap[g.console];
-  launchEmulator(g.title, c, `${RAW}/${encodeURIComponent(g.console)}/${encodeURIComponent(g.file)}`);
-}
+function playGame(i){const g=GAMES[i],c=cMap[g.consoleId];launchEmulator(g.title,c,`${RAW}/${encodeURIComponent(g.folder)}/${encodeURIComponent(g.file)}`);}
+
 function launchEmulator(title,con,romUrl){
-  document.getElementById('homeView').style.display='none';
-  document.getElementById('emulatorView').style.display='block';
-  document.getElementById('emuName').textContent=title;
-  document.getElementById('emuBadge').textContent=con.name;
+  document.getElementById('homeView').style.display='none';document.getElementById('emulatorView').style.display='block';
+  document.getElementById('emuName').textContent=title;document.getElementById('emuBadge').textContent=con.name;
   document.getElementById('game').innerHTML='';
   document.querySelectorAll('script[src*="emulatorjs"],.ejs--css,#ejs_css').forEach(s=>s.remove());
   window.EJS_player='#game';window.EJS_core=con.core;window.EJS_gameName=title;window.EJS_gameUrl=romUrl;
@@ -301,7 +269,6 @@ function goHome(){
   document.getElementById('emulatorView').style.display='none';document.getElementById('homeView').style.display='';window.scrollTo({top:0});
 }
 
-/* ── Modal ── */
 function openModal(){modalFile=null;const s=document.getElementById('modalConsole');s.innerHTML='<option value="">Select console...</option>';CONSOLES.forEach(c=>s.innerHTML+=`<option value="${c.id}">${c.name} (${c.exts.join(', ')})</option>`);document.getElementById('modalFileRow').classList.remove('visible');document.getElementById('modalDrop').classList.remove('has-file');document.getElementById('modalPlayBtn').disabled=true;document.getElementById('modalExts').textContent='Select a console above';document.getElementById('modalFileInput').value='';document.getElementById('uploadModal').classList.add('open');}
 function closeModal(){document.getElementById('uploadModal').classList.remove('open');}
 document.getElementById('modalConsole').addEventListener('change',function(){const c=CONSOLES.find(x=>x.id===this.value);if(c){document.getElementById('modalExts').textContent='Accepted: '+c.exts.join(', ');document.getElementById('modalFileInput').accept=c.exts.join(',');}updateMP();});
@@ -314,7 +281,6 @@ function playCustom(){const c=CONSOLES.find(x=>x.id===document.getElementById('m
 function fmtSz(b){return b<1024?b+' B':b<1048576?(b/1024).toFixed(1)+' KB':(b/1048576).toFixed(1)+' MB';}
 document.getElementById('uploadModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
 
-/* ── Boot ── */
 fetchGames();
 </script>
 </body>
